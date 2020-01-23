@@ -10,8 +10,22 @@
 <body>
     <div class="container pt-5">
         <h1>Tutorial AJAX</h1>
-        <div class="result"></div>
-        <button class="btn btn-primary">Load Content</button>
+        <div id="result"></div>
+        <button class="btn btn-primary" onclick="loadContent()">Load Content</button>
+
+        <script>
+            function loadContent() {
+                var xhr = new XMLHttpRequest()
+                var url = "https://api.github.com/users/petanikode"
+                xhr.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        document.getElementById("result").innerHTML = this.responseText
+                    }
+                }
+                xhr.open("GET", url, true)
+                xhr.send()
+            }
+        </script>
     </div>
 </body>
 </html>
